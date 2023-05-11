@@ -21,7 +21,6 @@ public class Player {
         height = 50;
         width = 50;
         dy = 0;
-
     }
 
     public int getX(){
@@ -33,30 +32,28 @@ public class Player {
 
     public void jump(){
         isJumping = true;
-        //subtract my dy over time in move
         dy = 40;
-
-        //boolean is jumping true maybe
     }
     public void move() {
+        // If player is jumping
         if(isJumping){
+            // Slowly decrease the y value and go upwards and eventually downwards again as dy gets negative
             y = y - dy;
+            // Decrease amount of change in y
             dy -= GRAVITY;
+            // If it is at the ground floor or below
             if(y >= 510){
+                // Go to ground floor
                 y = 510;
                 isJumping = false;
+                // Reset change in y to 0 so it doesn't move anymore
                 dy = 0;
             }
         }
 
     }
-    public void die(){
-
-    }
-
     public void draw(Graphics g) {
-        g.drawImage(image, x, y, 50, 50, 	// (x, y) of upper left corner in output window and width, height
-                viewer);
+        g.drawImage(image, x, y, 50, 50, viewer);
     }
 
 
