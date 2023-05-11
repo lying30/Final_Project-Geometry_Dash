@@ -16,7 +16,7 @@ public class Player {
         this.viewer = viewer;
         this.image = image;
         isJumping = false;
-        x = 50;
+        x = 250;
         y = 510;
         height = 50;
         width = 50;
