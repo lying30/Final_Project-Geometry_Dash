@@ -23,7 +23,7 @@ public class Game implements ActionListener {
     public Game(){
         window = new GameViewer(this);
         score = 0;
-        deaths = 0;
+        deaths = 1;
         level = 1;
         gameOver = false;
 
@@ -43,6 +43,11 @@ public class Game implements ActionListener {
     public Player getPlayer() {
         return player;
     }
+
+    public int getDeaths() {
+        return deaths;
+    }
+
     private void createObstacles() {
 
         // Creates each obstacle in its unique spot and unique shape
@@ -160,7 +165,15 @@ public class Game implements ActionListener {
 
     }
 
+    public void createNewGame() {
+        gameOver = false;
 
+
+        player = new Player(window, window.getIcon());
+        obstacles = new ArrayList<Obstacle>();
+        createObstacles();
+        deaths++;
+    }
     public static void main(String[] args) {
         //Make game object to call the methods in the game class
         Game game = new Game();
