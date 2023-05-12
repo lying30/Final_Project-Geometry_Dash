@@ -79,16 +79,19 @@ public class GameViewer extends JFrame implements KeyListener {
         if(keyCode == KeyEvent.VK_A){
             welcome = true;
         }
+        else if (keyCode == KeyEvent.VK_R) {
+            a.createNewGame();
+            welcome = false;
+        }
         repaint();
     }
-
-
 
     public void paint(Graphics g) {
         // Draw the welcome page
         g.drawImage(welcomePage, 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, this);
         g.setColor(Color.green);
-        g.drawString("PRESS A TO START!!!", WINDOW_WIDTH/2, WINDOW_HEIGHT/2 + 225);
+        g.setFont(g.getFont().deriveFont(50f));
+        g.drawString("PRESS A TO START!!!", WINDOW_WIDTH/2-200, WINDOW_HEIGHT/2 + 225);
         // If the player has clicked "a"
         if(welcome != false) {
             // Draw background
@@ -107,18 +110,29 @@ public class GameViewer extends JFrame implements KeyListener {
                     a.getObstacles().get(i).draw(g);
                 }
             }
+            g.setColor(Color.WHITE);
+            g.setFont(new Font("r", Font.BOLD, 50));
+            g.drawString("ATTEMPT "+a.getDeaths(), 450, 300);
 
             // If the game is over because they have lost, then draw the game over screen
             if (a.isGameOver() == true) {
                 g.drawImage(gameOver, 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, this);
+                g.setColor(Color.green);
+                g.fillRoundRect(460, 536, 300, 100, 30, 30);
+                g.setColor(Color.black);
+                g.setFont(g.getFont().deriveFont(50f));
+                g.drawString("PRESS R", 500, 610);
+
             }
             // If the game is not over yet and the last obstacle reaches the left side of the screen.
             // Then draw the win screen.
-            if(a.isGameOver() == false && a.getObstacles().get(19).getX2() == 0) {
+            if(a.isGameOver() == false && a.getObstacles().get(19).getX2() <= 0) {
                 g.drawImage(level, 0,0, WINDOW_WIDTH, WINDOW_HEIGHT,this);
-                g.drawRect(WINDOW_WIDTH/2-80, WINDOW_HEIGHT/2-80, 400,300);
+                g.fillRect(WINDOW_WIDTH/2-140, WINDOW_HEIGHT/2-100, 450,300);
+                g.setColor(Color.black);
+                g.setFont(g.getFont().deriveFont(50f));
+                g.drawString("Attempts: " + a.getDeaths(), WINDOW_WIDTH/2-90, WINDOW_HEIGHT/2);
             }
-
 
             Toolkit.getDefaultToolkit().sync();
         }

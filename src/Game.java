@@ -6,11 +6,8 @@ import java.util.ArrayList;
 public class Game implements ActionListener {
 
     public final int NUM_OBSTACLES = 20;
-    private Player playerClass;
     private GameViewer window;
-    private int score;
     private int deaths;
-    private int level;
     int[] arr;
     private boolean gameOver;
     private Obstacle obstacleClass;
@@ -22,9 +19,7 @@ public class Game implements ActionListener {
 
     public Game(){
         window = new GameViewer(this);
-        score = 0;
-        deaths = 0;
-        level = 1;
+        deaths = 1;
         gameOver = false;
 
 
@@ -43,6 +38,11 @@ public class Game implements ActionListener {
     public Player getPlayer() {
         return player;
     }
+
+    public int getDeaths() {
+        return deaths;
+    }
+
     private void createObstacles() {
 
         // Creates each obstacle in its unique spot and unique shape
@@ -62,33 +62,33 @@ public class Game implements ActionListener {
         obstacles.add(obstacle5);
         Obstacle obstacle6 = new Obstacle(window, window.getImages().get(0), WINDOW_WIDTH+2459);
         obstacles.add(obstacle6);
-        Obstacle obstacle7 = new Obstacle(window, window.getImages().get(0), WINDOW_WIDTH+2735);
+        Obstacle obstacle7 = new Obstacle(window, window.getImages().get(0), WINDOW_WIDTH+2795);
         obstacles.add(obstacle7);
         Obstacle obstacle8 = new Obstacle(window, window.getImages().get(1), WINDOW_WIDTH+3500);
         obstacles.add(obstacle8);
-        Obstacle obstacle9 = new Obstacle(window, window.getImages().get(0), WINDOW_WIDTH+3900);
+        Obstacle obstacle9 = new Obstacle(window, window.getImages().get(0), WINDOW_WIDTH+4000);
         obstacles.add(obstacle9);
         Obstacle obstacle10 = new Obstacle(window, window.getImages().get(1), WINDOW_WIDTH+4300);
         obstacles.add(obstacle10);
-        Obstacle obstacle11 = new Obstacle(window, window.getImages().get(0), WINDOW_WIDTH+4600);
+        Obstacle obstacle11 = new Obstacle(window, window.getImages().get(0), WINDOW_WIDTH+4700);
         obstacles.add(obstacle11);
-        Obstacle obstacle12 = new Obstacle(window, window.getImages().get(0), WINDOW_WIDTH+4900);
+        Obstacle obstacle12 = new Obstacle(window, window.getImages().get(0), WINDOW_WIDTH+5000);
         obstacles.add(obstacle12);
-        Obstacle obstacle13 = new Obstacle(window, window.getImages().get(0), WINDOW_WIDTH+5134);
+        Obstacle obstacle13 = new Obstacle(window, window.getImages().get(0), WINDOW_WIDTH+5334);
         obstacles.add(obstacle13);
-        Obstacle obstacle14 = new Obstacle(window, window.getImages().get(1), WINDOW_WIDTH+5300);
+        Obstacle obstacle14 = new Obstacle(window, window.getImages().get(1), WINDOW_WIDTH+5700);
         obstacles.add(obstacle14);
-        Obstacle obstacle15 = new Obstacle(window, window.getImages().get(0), WINDOW_WIDTH+5800);
+        Obstacle obstacle15 = new Obstacle(window, window.getImages().get(0), WINDOW_WIDTH+6300);
         obstacles.add(obstacle15);
-        Obstacle obstacle16 = new Obstacle(window, window.getImages().get(0), WINDOW_WIDTH+6150);
+        Obstacle obstacle16 = new Obstacle(window, window.getImages().get(0), WINDOW_WIDTH+6650);
         obstacles.add(obstacle16);
-        Obstacle obstacle17 = new Obstacle(window, window.getImages().get(0), WINDOW_WIDTH+6400);
+        Obstacle obstacle17 = new Obstacle(window, window.getImages().get(0), WINDOW_WIDTH+6900);
         obstacles.add(obstacle17);
-        Obstacle obstacle18 = new Obstacle(window, window.getImages().get(0), WINDOW_WIDTH+6650);
+        Obstacle obstacle18 = new Obstacle(window, window.getImages().get(0), WINDOW_WIDTH+7250);
         obstacles.add(obstacle18);
-        Obstacle obstacle19 = new Obstacle(window, window.getImages().get(0), WINDOW_WIDTH+6850);
+        Obstacle obstacle19 = new Obstacle(window, window.getImages().get(0), WINDOW_WIDTH+7550);
         obstacles.add(obstacle19);
-        Obstacle obstacle20 = new Obstacle(window, window.getImages().get(0), WINDOW_WIDTH+7150);
+        Obstacle obstacle20 = new Obstacle(window, window.getImages().get(0), WINDOW_WIDTH+7950);
         obstacles.add(obstacle20);
     }
 
@@ -153,20 +153,20 @@ public class Game implements ActionListener {
         window.repaint();
     }
 
-    public void updatePercentage(){
-
+    // Creates a new game for the user to play again if they choose to
+    // This is also where I implement the death counter
+    public void createNewGame() {
+        gameOver = false;
+        player = new Player(window, window.getIcon());
+        obstacles = new ArrayList<Obstacle>();
+        createObstacles();
+        deaths++;
     }
-    public void updateDeaths() {
-
-    }
-
 
     public static void main(String[] args) {
         //Make game object to call the methods in the game class
         Game game = new Game();
-
         game.playGame();
     }
-
 }
 
