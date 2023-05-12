@@ -86,8 +86,6 @@ public class GameViewer extends JFrame implements KeyListener {
         repaint();
     }
 
-
-
     public void paint(Graphics g) {
         // Draw the welcome page
         g.drawImage(welcomePage, 0, 0, WINDOW_WIDTH, WINDOW_HEIGHT, this);

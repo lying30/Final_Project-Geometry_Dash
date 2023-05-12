@@ -1,9 +1,0 @@
-//    public void createNewGame() {
-//        gameOver = false;
-//        player = new Player(window, window.getIcon());
-//        obstacles = new ArrayList<Obstacle>();
-//        createObstacles();
-//
-//        Timer clock = new Timer(SLEEP_TIME, this);
-//        clock.start();
-//    }

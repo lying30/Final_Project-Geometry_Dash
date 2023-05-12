@@ -6,11 +6,8 @@ import java.util.ArrayList;
 public class Game implements ActionListener {
 
     public final int NUM_OBSTACLES = 20;
-    private Player playerClass;
     private GameViewer window;
-    private int score;
     private int deaths;
-    private int level;
     int[] arr;
     private boolean gameOver;
     private Obstacle obstacleClass;
@@ -22,9 +19,7 @@ public class Game implements ActionListener {
 
     public Game(){
         window = new GameViewer(this);
-        score = 0;
         deaths = 1;
-        level = 1;
         gameOver = false;
 
 
@@ -158,26 +153,19 @@ public class Game implements ActionListener {
         window.repaint();
     }
 
-    public void updatePercentage(){
-
-    }
-    public void updateDeaths() {
-
-    }
-
+    // Creates a new game for the user to play again if they choose to
+    // This is also where I implement the death counter
     public void createNewGame() {
         gameOver = false;
-
-
         player = new Player(window, window.getIcon());
         obstacles = new ArrayList<Obstacle>();
         createObstacles();
         deaths++;
     }
+
     public static void main(String[] args) {
         //Make game object to call the methods in the game class
         Game game = new Game();
-
         game.playGame();
     }
 }
