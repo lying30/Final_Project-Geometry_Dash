@@ -1,12 +1,18 @@
+/**
+ * Geometry Dash - Final Project
+ * @author: Lucas Ying
+ * @version: 5/12/23
+ * Class: Player
+ */
 import java.awt.*;
 
 public class Player {
     GameViewer viewer;
-    private int x;
+    private final int x;
     private int y;
     private int dy;
-    private int height;
-    private int width;
+    private final int height;
+    private final int width;
     private Image image;
     private boolean isJumping;
     private static final int GRAVITY = 2;
@@ -22,14 +28,12 @@ public class Player {
         width = 50;
         dy = 0;
     }
-
     public int getX(){
         return x;
     }
     public int getY(){
         return y;
     }
-
     public void jump(){
         isJumping = true;
         dy = 40;
@@ -46,15 +50,12 @@ public class Player {
                 // Go to ground floor
                 y = 510;
                 isJumping = false;
-                // Reset change in y to 0 so it doesn't move anymore
+                // Reset change in y to 0, so it doesn't move anymore
                 dy = 0;
             }
         }
-
     }
     public void draw(Graphics g) {
         g.drawImage(image, x, y, 50, 50, viewer);
     }
-
-
 }

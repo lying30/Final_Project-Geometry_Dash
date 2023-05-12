@@ -1,16 +1,20 @@
+/**
+ * Geometry Dash - Final Project
+ * @author: Lucas Ying
+ * @version: 5/12/23
+ * Class: Game
+ */
+
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-public class Game implements ActionListener {
 
+public class Game implements ActionListener {
     public final int NUM_OBSTACLES = 20;
-    private GameViewer window;
+    private final GameViewer window;
     private int deaths;
-    int[] arr;
     private boolean gameOver;
-    private Obstacle obstacleClass;
     private static final int SLEEP_TIME = 10;
     private ArrayList<Obstacle> obstacles;
     private static final int    WINDOW_WIDTH = 1212,
@@ -21,30 +25,22 @@ public class Game implements ActionListener {
         window = new GameViewer(this);
         deaths = 1;
         gameOver = false;
-
-
         player = new Player(window, window.getIcon());
         obstacles = new ArrayList<Obstacle>();
         createObstacles();
-
         Timer clock = new Timer(SLEEP_TIME, this);
         clock.start();
     }
-
     public boolean isGameOver() {
         return gameOver;
     }
-
     public Player getPlayer() {
         return player;
     }
-
     public int getDeaths() {
         return deaths;
     }
-
     private void createObstacles() {
-
         // Creates each obstacle in its unique spot and unique shape
         // And adds it to the ArrayList of obstacles
         // Not done in a loop so the level stays the same every time
@@ -91,8 +87,7 @@ public class Game implements ActionListener {
         Obstacle obstacle20 = new Obstacle(window, window.getImages().get(0), WINDOW_WIDTH+7950);
         obstacles.add(obstacle20);
     }
-
-    // Checks whether the player has collided with a obstacle
+    // Checks whether the player has collided with an obstacle
     public boolean collides(int playerX, int playerY, int playerHeight, int playerWidth) {
         // Loop through the arraylist of obstacles
         // Check whether the player has collided with an obstacle
@@ -108,7 +103,6 @@ public class Game implements ActionListener {
         }
         return false;
     }
-
     public boolean checkCollide(int playerX, int playerX2, int i, int playerY2) {
         // If the player is to the right of the obstacle it is not colliding
         if(obstacles.get(i).getX2() < playerX){
@@ -124,13 +118,12 @@ public class Game implements ActionListener {
         }
         return true;
     }
-
     public ArrayList<Obstacle> getObstacles(){
         return obstacles;
     }
     public void actionPerformed(ActionEvent e) {
         // If the game has started and the player has pressed "a" to start
-        if(window.welcome == true) {
+        if(window.welcome) {
             // Call move on the player.
             player.move();
             // Loop through the obstacles
@@ -148,11 +141,9 @@ public class Game implements ActionListener {
         // Update the window.
         window.repaint();
     }
-
     public void playGame(){
         window.repaint();
     }
-
     // Creates a new game for the user to play again if they choose to
     // This is also where I implement the death counter
     public void createNewGame() {
@@ -162,7 +153,6 @@ public class Game implements ActionListener {
         createObstacles();
         deaths++;
     }
-
     public static void main(String[] args) {
         //Make game object to call the methods in the game class
         Game game = new Game();
